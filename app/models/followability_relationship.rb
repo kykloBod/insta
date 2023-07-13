@@ -1,0 +1,3 @@
+class FollowabilityRelationship < ApplicationRecord
+    
+  end

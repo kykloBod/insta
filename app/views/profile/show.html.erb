@@ -1,0 +1,14 @@
+<h4><%= @user.email %></h4>
+
+
+<% if current_user.following?(@user) %>
+   
+    <%= button_to "Unfollow", unfollow_path(@user) %>
+    <h3> Юуху! </h3> 
+    <h2>(⁠♡⁠ω⁠♡⁠ ⁠)⁠ ⁠~⁠♪ </h2>
+
+
+<% else %>
+    <%= button_to "follow", follow_path(@user) %>
+    <h3>А может подписочку? </h3> <h2>(⁠｡⁠･⁠ω⁠･⁠｡⁠)⁠ﾉ⁠♡ </h2>
+<% end %>

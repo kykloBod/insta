@@ -1,0 +1,51 @@
+<p style="color: red"><%= notice %></p>
+
+<%= render @post %>
+
+
+<div>
+<% if current_user == @post.user %>
+<h6><%= link_to "Отредактировать этот пост", edit_post_path(@post) %> </h6>
+  
+  <%= button_to "Удалить этот пост", @post, method: :delete %>
+  <% end %>
+  <h6><%= link_to "Вернуться к постам", posts_path %></h6>
+
+</div>
+
+
+<% if like = Like.find_by(post: @post, user: current_user) %>
+  <%= button_to "Dislike", like_path, params: {like: {post_id:@post.id}}, method: :delete %>
+<% else %>
+ 
+  <%= button_to "like", likes_path, params: {like: {post_id:@post.id}}, method: :post %>
+<% end %>
+
+<h3>
+<%= @post.likes.count %>
+</h3>
+</br>
+<h3>Просмотров: <%= @post.hits%> </h3>
+<h3>Все коменты</h3>
+<% @post.comments.each do |comment|%>
+  <div class="alert alert-light">
+    <p><strong><%= comment.user.email%><strong>: <%= comment.body%> </p>
+  </div>
+<% end %>
+
+
+
+<h3>Добавить комент</h3>
+<%= form_for([@post, @post.comments.build])  do |f| %> 
+
+  
+
+  <p> Текст коментария <br>
+    <%= f.text_area(:body, {:class => 'form-control'}) %>
+  </p>
+
+  <p> 
+    <h6><%= f.submit("Добавить комент", {:class => 'btn btn-success'}) %></h6>
+  </p>
+<% end %>
+

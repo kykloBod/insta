@@ -1,0 +1,14 @@
+<p style="color: red"><%= notice %></p>
+
+<h4>Посты</h4>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+    
+    <h6> <%= link_to "Посмотреть этот пост", post %><h6>
+    
+  <% end %>
+</div>
+
+<h6><%= link_to "Новый пост", new_post_path %></h6>

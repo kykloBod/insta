@@ -1,0 +1,25 @@
+<div id="<%= dom_id post %>">
+  <p>
+    <strong>Title:</strong>
+    <%= post.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= post.description %>
+  </p>
+
+  <p>
+    <strong>Keyworgs:</strong>
+    <%= post.keyworgs %>
+  </p>
+
+<% if post.image.present? %>
+   <p>
+    <%= image_tag(post.image, size: "400x400") %>
+    
+  </p>
+  
+<% end %>
+
+</div>
